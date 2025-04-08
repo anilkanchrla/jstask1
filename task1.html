@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>person details</title>
+</head>
+<body>
+    Sign up
+    <form onclick="signup(event)">
+        <input type="text" placeholder="username" id="name" required>
+        <input type="email" placeholder="usermail" id="email" required>
+        <input type="password" placeholder="password" id="password" required>
+
+        <button type="submit">Sign Up</button>
+    </form>
+
+    <script>
+        function signup(a){
+            a.preventDefault();
+            let signupName=document.getElementById("name").value.trim()
+            let signupEmail=document.getElementById("email").value.trim()
+            let signuppassword=document.getElementById("password").value.trim()
+
+            let students=JSON.parse(localStorage.getItem("students")) || []
+            const allstudents=students.find(x=>x.email === signupEmail)
+
+            if(allstudents){
+                return alert("alredy user exists same mail")
+            }
+            let newUser={
+                name:signupName,
+                email:signupEmail,
+                password:signuppassword,
+            }
+
+            students.push(newUser)
+            localStorage.setItem("students",JSON.stringify(students))
+            window.location.href="login.html"
+        }
+    </script>
+</body>
+</html>

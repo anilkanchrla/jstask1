@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<body>
+    Login page
+
+    <form onclick="login(event)">
+        <input type="email" placeholder="usermail" id="email" required>
+        <input type="password" placeholder="password" id="password" required>
+
+        <button type="submit">Login</button>
+    </form>
+
+    <script>
+        function login(a){
+            a.preventDefault();
+            let loginEmail=document.getElementById("email").value.trim()
+            let loginpassword=document.getElementById("password").value.trim()
+
+            let students=JSON.parse(localStorage.getItem("allstudents")) || []
+            const allstudents=students.find(x=>x.email === loginEmail && x.password === loginpassword)
+
+            if(allstudents){
+                alert("login succesful")
+
+                localStorage.setItem("students",JSON.stringify(students.email))
+                 window.location.href="dashboard.html"
+            }
+            //  window.location.href="dashboard.html"
+            // localStorage.setItem("students",JSON.stringify(students))
+            // window.location.href="dashboard.html"
+            // localStorage.setItem("students",JSON.stringify(students))
+            // window.location.href="dashboard.html"
+            
+
+        }
+    </script>
+
+    if you don't have any account please signup :<a href="task1.html">Signup</a>
+</body>
+</html>
